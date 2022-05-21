@@ -1,13 +1,78 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(238, 236, 236);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.background {
+  background: rgb(238, 236, 236);
+  text-align: center;
 }
+
+/* .indent {
+  margin: 0% 8% 0% 8%;
+  text-align: center;
+} */
+
+/* .center-content {
+  text-align: center;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.container {
+  border-color: lightgray;
+}
+
+.center {
+  text-align: center;
+}
+
+.page-border  {
+  margin-right: 100px;
+  margin-left: 100px;
+  padding: 20px;
+  border-color: lightgray;
+}
+
+.form-border  {
+  margin: 10px;
+  padding: 20px;
+  border-color: lightgray;
+}
+
+/* .center-page {
+  margin-left: 210px;
+  margin-top: 150px;
+  width: 50%;
+  padding: 100px;
+} */
+
+/* .errors {
+  color: red;
+} */
+
+.divider {
+  border-width: thin;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding: 0px;
+  border-color: lightgray;
+  border-style: solid;
+}
+
+.a {
+  color: rgb(100, 96, 96);
+}
+
+/* .footer {
+  border-top: 1px solid gray;
+  color: #707070;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+  display: flex;
+  justify-content: space-between;
+} */
+
