@@ -8,6 +8,7 @@ function Prompt() {
   const [formData, setFormData] = useState({
     prompt: "Write a poem about ",
     temperature: 50,
+    max_tokens: 200,
   })
 
   const initialFormState = {
@@ -27,7 +28,8 @@ function Prompt() {
 
     const newPoem = {
       prompt: formData.prompt,
-      temperature: (formData.temperature)/100.0
+      temperature: (formData.temperature)/100.0,
+      max_tokens: 300,
     }
 
     fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
