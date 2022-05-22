@@ -8,7 +8,10 @@ function Prompt() {
   const [formData, setFormData] = useState({
     prompt: "Write a poem about ",
     temperature: 50,
-    max_tokens: 200,
+    max_tokens: 300,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
   })
 
   const initialFormState = {
@@ -30,6 +33,9 @@ function Prompt() {
       prompt: formData.prompt,
       temperature: (formData.temperature)/100.0,
       max_tokens: 300,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
     }
 
     fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
@@ -53,11 +59,12 @@ function Prompt() {
   }
 
   const poemList = poems.map((poem, index) => 
-        <Response 
-          key= {index}
-          prompt = {poem.prompt}
-          poems = {poem.response}
-        />).reverse()
+    <Response 
+      key= {index}
+      prompt = {poem.prompt}
+      poems = {poem.response}
+    />
+  ).reverse()
 
   return (
     <div>
@@ -104,12 +111,14 @@ function Prompt() {
       </div>   
 
       <p className='divider'></p>
+      <h2> Responses </h2>
+      <p className='divider'></p>      
       <br/>
 
-      <h2> Responses </h2>
-      {poemList}
-      
-      
+      <div className="ui one column grid">
+        <div className="ui center aligned ten wide row grid container">{poemList}</div>
+        <br/>
+      </div>
 
     </div>
   )

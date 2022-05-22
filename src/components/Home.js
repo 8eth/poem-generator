@@ -7,7 +7,8 @@ function Home() {
     <div >
         <h1>Poem Generator</h1>
         <Prompt />
-        
+        <br/>
+        <br/>
     </div>
   )
 }
