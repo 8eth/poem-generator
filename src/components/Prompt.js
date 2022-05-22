@@ -3,25 +3,23 @@ import Response from './Response.js'
 
 function Prompt() {
 
-  const [poems, setPoems] = useState()
+  const [poems, setPoems] = useState([])
 
   const [formData, setFormData] = useState({
-    prompt: "",
-    temperature: 0.5,
-    max_tokens: 64,
-    top_p: 1.0,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0,
-    // "stop": [" Human:", " AI:"]
+    prompt: "Write a poem about ",
+    temperature: 50,
   })
 
   const initialFormState = {
-    prompt: ""
+    prompt: "Write a poem about ",
+    temperature: 50
   }
     
   function onCreatePoem(newPoem) {
-    // setPoems([...poems, newPoem])
-    setPoems(newPoem)
+    setPoems([...poems, {
+      prompt: formData.prompt,
+      response: newPoem.choices[0].text,
+    }])
   }
 
   function handleSubmit(e) {
@@ -29,13 +27,14 @@ function Prompt() {
 
     const newPoem = {
       prompt: formData.prompt,
+      temperature: (formData.temperature)/100.0
     }
 
-    fetch("https://api.openai.com/v1/engines/text-davinci-002/completions", {
+    fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_SECRET}`,
       },
       body: JSON.stringify(newPoem),
     })
@@ -50,6 +49,13 @@ function Prompt() {
       [e.target.name]: e.target.value,
     });
   }
+
+  const poemList = poems.map((poem, index) => 
+        <Response 
+          key= {index}
+          prompt = {poem.prompt}
+          poems = {poem.response}
+        />).reverse()
 
   return (
     <div>
@@ -75,6 +81,21 @@ function Prompt() {
             <br/>
             <br/>
 
+            <label htmlFor="taste">Randomness: {formData.temperature/100.0}</label>
+            <br/>
+            <input
+              name='temperature'
+              type='range'
+              min='0'
+              max='99'
+              id={FormData.temperature}
+              value={formData.temperature}
+              onChange={(e) => handleChange(e)}
+            />
+
+            <br/>
+            <br/>
+
             <button className="ui button center" type="submit">Submit</button>
           </form>
         </div>
@@ -83,10 +104,10 @@ function Prompt() {
       <p className='divider'></p>
       <br/>
 
-      <Response 
-        prompt = {formData.prompt}
-        poems = {poems}
-      />
+      <h2> Responses </h2>
+      {poemList}
+      
+      
 
     </div>
   )
