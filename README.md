@@ -23,10 +23,10 @@ This application uses the following for styling
   * Custom css
 
 ## User Input
-![Login](.public/PromptAndRandomness.png)
+![User Input](./public/PromptAndRandomness.png)
 
 ## User Response
-![AllTeas](.public/ResponsesAndFooter.png)
+![User Response](./public/ResponsesAndFooter.png)
 
 ## Author
 Beth Fekadu
